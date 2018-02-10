@@ -1,10 +1,12 @@
 package com.example.kewen.buyitforus.modelo;
 
+import java.io.Serializable;
+
 /**
  * Created by kewen on 10/02/18.
  */
 
-public class Produto {
+public class Produto implements Serializable{
     private long id;
     private String nome;
     private String descricao;

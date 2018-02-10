@@ -5,11 +5,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context="com.example.kewen.buyitforus.AddProdutoActivity">
+        tools:context="com.example.kewen.buyitforus.AlterarProdutoActivity">
 
 
         <EditText
-            android:id="@+id/add_produto_nome_produto"
+            android:id="@+id/alterar_produto_nome_produto"
             android:layout_width="match_parent"
             android:layout_marginRight="16dp"
             android:layout_marginLeft="16dp"
@@ -17,7 +17,7 @@
             android:hint="Digite o nome do produto"/>
 
         <EditText
-            android:id="@+id/add_produto_descricao"
+            android:id="@+id/alterar_produto_descricao"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textMultiLine"
