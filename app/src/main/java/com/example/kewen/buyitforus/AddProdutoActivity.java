@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.kewen.buyitforus.dao.ProdutoDAO;
 import com.example.kewen.buyitforus.modelo.Produto;
 
 public class AddProdutoActivity extends AppCompatActivity {
@@ -39,10 +40,16 @@ public class AddProdutoActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.menu_add_produto_ok:
                 Produto produto = addProdutoHelper.pegaProduto();
-
+                ProdutoDAO produtoDAO = new ProdutoDAO(this);
+                produtoDAO.insereProduto(produto);
+                produtoDAO.close();
 
 
                 Toast.makeText(AddProdutoActivity.this, produto.getNome() + " adicionado a lista", Toast.LENGTH_SHORT).show();
+                finish();
+                break;
+            case R.id.menu_add_produto_cancelar:
+                Toast.makeText(AddProdutoActivity.this, "Cancelado", Toast.LENGTH_SHORT).show();
                 finish();
                 break;
         }

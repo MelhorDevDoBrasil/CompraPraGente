@@ -2,10 +2,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:id="@+id/menu_add_produto_ok"
-        android:title="OK"
-        android:icon="@drawable/ic_confirmar"
+    <item android:id="@+id/menu_add_produto_cancelar"
+        android:title="CANCELAR"
         app:showAsAction="always"
         ></item>
+
+    <item android:id="@+id/menu_add_produto_ok"
+        android:title="SALVAR"
+        app:showAsAction="always"
+        ></item>
+
+
 
 </menu>

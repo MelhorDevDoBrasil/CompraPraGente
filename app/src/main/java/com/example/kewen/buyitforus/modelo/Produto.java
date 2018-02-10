@@ -7,6 +7,15 @@ package com.example.kewen.buyitforus.modelo;
 public class Produto {
     private long id;
     private String nome;
+    private String descricao;
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
 
     public long getId() {
         return id;
@@ -27,4 +36,8 @@ public class Produto {
     public Produto() {
     }
 
+    @Override
+    public String toString() {
+        return getNome();
+    }
 }
