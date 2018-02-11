@@ -1,8 +1,11 @@
 package com.example.kewen.buyitforus;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.ContextMenu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -54,6 +57,8 @@ public class ListaActivity extends AppCompatActivity {
             }
         });
 
+        registerForContextMenu(listaProdutos);
+
     }
 
     @Override
@@ -72,5 +77,31 @@ public class ListaActivity extends AppCompatActivity {
 
        
         listaProdutos.setAdapter(new ArrayAdapter<Produto>(this, android.R.layout.simple_list_item_checked, produtos));
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
+        Produto produto = (Produto) listaProdutos.getItemAtPosition(info.position);
+
+
+        MenuItem itemAmazon = menu.add("Amazon.com");
+        Intent intentAmazon = new Intent(Intent.ACTION_VIEW);
+        intentAmazon.setData(Uri.parse("https://www.amazon.com/s?url=search-alias%3Daps&field-keywords="+ produto.getNome()));
+        itemAmazon.setIntent(intentAmazon);
+
+
+
+        MenuItem itemMercadoLivre = menu.add("MercadoLivre");
+        Intent intentMercadoLivre = new Intent(Intent.ACTION_VIEW);
+        intentMercadoLivre.setData(Uri.parse("https://lista.mercadolivre.com.br/"+ produto.getNome()));
+        itemMercadoLivre.setIntent(intentMercadoLivre);
+
+        MenuItem itemSupermercado = menu.add("Supermercado Mais Proximo");
+        Intent intentSuperMercado = new Intent(Intent.ACTION_VIEW);
+        intentSuperMercado.setData(Uri.parse("https://www.google.com.br/maps/search/supermercado/@-"));
+        itemSupermercado.setIntent(intentSuperMercado);
+
     }
 }
