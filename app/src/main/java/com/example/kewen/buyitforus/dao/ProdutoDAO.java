@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.support.annotation.NonNull;
 
 import com.example.kewen.buyitforus.modelo.Produto;
 
@@ -36,11 +37,17 @@ public class ProdutoDAO extends SQLiteOpenHelper {
 
     public void insereProduto(Produto produto) {
         SQLiteDatabase db = getWritableDatabase();
+        ContentValues dados = pegaDadosDoProduto(produto);
+
+        db.insert("Produtos", null, dados);
+    }
+
+    @NonNull
+    private ContentValues pegaDadosDoProduto(Produto produto) {
         ContentValues dados = new ContentValues();
         dados.put("nome", produto.getNome());
         dados.put("descricao", produto.getDescricao());
-
-        db.insert("Produtos", null, dados);
+        return dados;
     }
 
     public List<Produto> buscaProdutos() {
@@ -60,6 +67,21 @@ public class ProdutoDAO extends SQLiteOpenHelper {
         cursor.close();
 
         return produtos;
+
+    }
+
+    public void deletaProduto(Produto produto) {
+        SQLiteDatabase db = getWritableDatabase();
+        String[] params = {Long.toString(produto.getId())};
+        db.delete("Produtos", "id = ?", params);
+    }
+
+    public void alteraProduto(Produto produto) {
+        SQLiteDatabase db = getWritableDatabase();
+
+        ContentValues dados = pegaDadosDoProduto(produto);
+        String[] params = {produto.getId().toString()};
+        db.update("Produtos", dados, "id = ?", params);
 
     }
 }

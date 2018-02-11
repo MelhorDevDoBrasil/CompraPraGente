@@ -7,7 +7,9 @@ import java.io.Serializable;
  */
 
 public class Produto implements Serializable{
-    private long id;
+
+
+    private Long id;
     private String nome;
     private String descricao;
 
@@ -19,11 +21,11 @@ public class Produto implements Serializable{
         return descricao;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

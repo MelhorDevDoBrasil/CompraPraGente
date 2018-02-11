@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.kewen.buyitforus.dao.ProdutoDAO;
 import com.example.kewen.buyitforus.modelo.Produto;
 
 public class DetalhesActivity extends AppCompatActivity {
@@ -36,8 +37,15 @@ public class DetalhesActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Toast.makeText(DetalhesActivity.this, "Apagando o produto " + produto.getNome() + " da lista", Toast.LENGTH_SHORT).show();
-                
+                if(produto != null) {
+
+                    Toast.makeText(DetalhesActivity.this, "Apagando o produto " + produto.getNome() + " da lista", Toast.LENGTH_SHORT).show();
+
+                    ProdutoDAO produtoDAO = new ProdutoDAO(DetalhesActivity.this);
+                    produtoDAO.deletaProduto(produto);
+                    produtoDAO.close();
+                    finish();
+                }
             }
         });
 

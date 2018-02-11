@@ -47,10 +47,15 @@ public class AlterarProdutoActivity extends AppCompatActivity {
             case R.id.menu_alterar_produto_ok:
                 Produto produto = alterarProdutoHelper.pegaProduto();
                 ProdutoDAO produtoDAO = new ProdutoDAO(this);
-                produtoDAO.insereProduto(produto);
+                if (produto.getId() != null){
+                    produtoDAO.alteraProduto(produto);
+
+                } else {
+
+                    produtoDAO.insereProduto(produto);
+
+                }
                 produtoDAO.close();
-
-
                 Toast.makeText(AlterarProdutoActivity.this, produto.getNome() + " adicionado a lista", Toast.LENGTH_SHORT).show();
                 finish();
                 break;
