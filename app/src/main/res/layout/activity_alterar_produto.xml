@@ -1,57 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:context="com.example.kewen.buyitforus.AlterarProdutoActivity">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="225dp">
-        <ImageView
-            android:id="@+id/alterar_produto_photo"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:src="@drawable/shoppingcart"
-            android:background="#2a74cf"/>
-
-        <Button
-            android:id="@+id/alterar_produto_button_photo"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
-            android:background="@drawable/photo_button_layout"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="16dp"/>
-
-        </RelativeLayout>
-        <EditText
-            android:id="@+id/alterar_produto_nome_produto"
-            android:layout_width="match_parent"
-            android:layout_marginRight="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_height="wrap_content"
-            android:hint="Digite o nome do produto"/>
-
-        <EditText
-            android:id="@+id/alterar_produto_descricao"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textMultiLine"
-            android:minHeight="100dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginLeft="16dp"
-            android:maxLines="10"
-            android:scrollbars="vertical"
-            android:textAlignment="textStart"
-            android:hint="Descricao" />
-
-
-    </LinearLayout>
-</ScrollView>
+    android:layout_height="match_parent"
+    android:id="@+id/alterar_produto_frame_layout">
+</FrameLayout>

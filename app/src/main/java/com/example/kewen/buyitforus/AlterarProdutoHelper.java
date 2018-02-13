@@ -1,5 +1,6 @@
 package com.example.kewen.buyitforus;
 
+import android.view.View;
 import android.widget.EditText;
 
 import com.example.kewen.buyitforus.modelo.Produto;
@@ -14,9 +15,9 @@ public class AlterarProdutoHelper {
     private final EditText campoDescricaoProduto;
     private Produto produto;
 
-    public AlterarProdutoHelper(AlterarProdutoActivity activity) {
-        campoNomeProduto = (EditText) activity.findViewById(R.id.alterar_produto_nome_produto);
-        campoDescricaoProduto = (EditText) activity.findViewById(R.id.alterar_produto_descricao);
+    public AlterarProdutoHelper(View view) {
+        campoNomeProduto = (EditText) view.findViewById(R.id.alterar_produto_nome_produto);
+        campoDescricaoProduto = (EditText) view.findViewById(R.id.alterar_produto_descricao);
         produto = new Produto();
 
     }
