@@ -24,6 +24,8 @@ public class ListaActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+
+
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.lista_frame_layout, new ListaFragment());
