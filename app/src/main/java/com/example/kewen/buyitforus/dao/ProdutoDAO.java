@@ -18,12 +18,12 @@ import java.util.List;
 
 public class ProdutoDAO extends SQLiteOpenHelper {
     public ProdutoDAO(Context context) {
-        super(context, "ListaDeCompras", null, 1);
+        super(context, "ListaDeCompras", null, 2);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String sql = "CREATE TABLE Produtos (id INTEGER PRIMARY KEY, nome TEXT NOT NULL, descricao TEXT); ";
+        String sql = "CREATE TABLE Produtos (id INTEGER PRIMARY KEY, nome TEXT NOT NULL, descricao TEXT, comprado BOOLEAN); ";
         db.execSQL(sql);
 
     }
@@ -47,6 +47,7 @@ public class ProdutoDAO extends SQLiteOpenHelper {
         ContentValues dados = new ContentValues();
         dados.put("nome", produto.getNome());
         dados.put("descricao", produto.getDescricao());
+        dados.put("comprado", produto.isComprado());
         return dados;
     }
 
@@ -61,6 +62,7 @@ public class ProdutoDAO extends SQLiteOpenHelper {
             produto.setId(cursor.getLong(cursor.getColumnIndex("id")));
             produto.setNome(cursor.getString(cursor.getColumnIndex("nome")));
             produto.setDescricao((cursor.getString(cursor.getColumnIndex("descricao"))));
+            produto.setComprado((cursor.getInt(cursor.getColumnIndex("comprado")) > 0));
 
             produtos.add(produto);
         }
@@ -84,4 +86,5 @@ public class ProdutoDAO extends SQLiteOpenHelper {
         db.update("Produtos", dados, "id = ?", params);
 
     }
+
 }

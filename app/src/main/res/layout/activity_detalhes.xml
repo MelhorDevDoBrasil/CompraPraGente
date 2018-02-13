@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.example.kewen.buyitforus.AlterarProdutoActivity">
 
+    tools:context="com.example.kewen.buyitforus.AlterarProdutoActivity">
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <ImageView
+        android:id="@+id/detalhes_photo"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:src="@drawable/shoppingcart"
+        android:background="#2a74cf"/>
 
     <TextView
         android:id="@+id/detalhes_nome_produto"
@@ -40,3 +49,4 @@
 
 
 </LinearLayout>
+</ScrollView>

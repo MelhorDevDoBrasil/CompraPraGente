@@ -1,6 +1,7 @@
 package com.example.kewen.buyitforus;
 
 import android.content.Intent;
+import android.database.DataSetObserver;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,41 +9,39 @@ import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.kewen.buyitforus.adapter.ProdutosAdapter;
 import com.example.kewen.buyitforus.dao.ProdutoDAO;
 import com.example.kewen.buyitforus.modelo.Produto;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class ListaActivity extends AppCompatActivity {
 
-    private ListView listaProdutos;
+    private ListView listViewProdutos;
+    private ProdutosAdapter produtosAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista);
 
-        listaProdutos = (ListView) findViewById(R.id.lista_produtos);
+        listViewProdutos = (ListView) findViewById(R.id.lista_produtos);
 
-        listaProdutos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listViewProdutos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                Produto produto = (Produto) listaProdutos.getItemAtPosition(position);
-                Intent vaiParaDetalhes = new Intent(ListaActivity.this, DetalhesActivity.class);
-                vaiParaDetalhes.putExtra("produto", produto);
+                Produto produto = (Produto) listViewProdutos.getItemAtPosition(position);
+                Intent intentVaiParaDetalhes = new Intent(ListaActivity.this, DetalhesActivity.class);
+                intentVaiParaDetalhes.putExtra("produto", produto);
 
-                startActivity(vaiParaDetalhes);
-
-
-
-
-
-                Toast.makeText(ListaActivity.this, "produto " + produto.getNome() + " clicado", Toast.LENGTH_SHORT).show();
+                startActivity(intentVaiParaDetalhes);
             }
         });
 
@@ -53,11 +52,11 @@ public class ListaActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intentVaiParaAlterarProduto = new Intent(ListaActivity.this, AlterarProdutoActivity.class);
                 startActivity(intentVaiParaAlterarProduto);
-
             }
         });
 
-        registerForContextMenu(listaProdutos);
+        registerForContextMenu(listViewProdutos);
+
 
     }
 
@@ -65,25 +64,19 @@ public class ListaActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        carregaLista();
+        produtosAdapter= new ProdutosAdapter(this);
+        listViewProdutos.setAdapter(produtosAdapter);
 
 
     }
 
-    private void carregaLista() {
-        ProdutoDAO produtoDAO = new ProdutoDAO(this);
-        List<Produto> produtos = produtoDAO.buscaProdutos();
-        produtoDAO.close();
-
-       
-        listaProdutos.setAdapter(new ArrayAdapter<Produto>(this, android.R.layout.simple_list_item_checked, produtos));
-    }
 
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
+
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
-        Produto produto = (Produto) listaProdutos.getItemAtPosition(info.position);
+        Produto produto = (Produto) listViewProdutos.getItemAtPosition(info.position);
 
 
         MenuItem itemAmazon = menu.add("Amazon.com");
@@ -98,7 +91,7 @@ public class ListaActivity extends AppCompatActivity {
         intentMercadoLivre.setData(Uri.parse("https://lista.mercadolivre.com.br/"+ produto.getNome()));
         itemMercadoLivre.setIntent(intentMercadoLivre);
 
-        MenuItem itemSupermercado = menu.add("Supermercado Mais Proximo");
+        MenuItem itemSupermercado = menu.add("#PagaNois Mais Proximo");
         Intent intentSuperMercado = new Intent(Intent.ACTION_VIEW);
         intentSuperMercado.setData(Uri.parse("https://www.google.com.br/maps/search/supermercado/@-"));
         itemSupermercado.setIntent(intentSuperMercado);

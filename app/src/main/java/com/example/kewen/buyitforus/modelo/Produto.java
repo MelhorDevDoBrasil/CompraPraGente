@@ -12,13 +12,10 @@ public class Produto implements Serializable{
     private Long id;
     private String nome;
     private String descricao;
+    private boolean comprado;
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
+    public Produto() {
 
-    public String getDescricao() {
-        return descricao;
     }
 
     public Long getId() {
@@ -37,7 +34,20 @@ public class Produto implements Serializable{
         this.nome = nome;
     }
 
-    public Produto() {
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public boolean isComprado() {
+        return comprado;
+    }
+
+    public void setComprado(boolean comprado) {
+        this.comprado = comprado;
     }
 
     @Override
