@@ -1,18 +1,28 @@
 package com.example.kewen.buyitforus.modelo;
 
+import java.io.Serializable;
+
 /**
  * Created by kewen on 10/02/18.
  */
 
-public class Produto {
-    private long id;
-    private String nome;
+public class Produto implements Serializable{
 
-    public long getId() {
+
+    private Long id;
+    private String nome;
+    private String descricao;
+    private boolean comprado;
+
+    public Produto() {
+
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -24,7 +34,24 @@ public class Produto {
         this.nome = nome;
     }
 
-    public Produto() {
+    public String getDescricao() {
+        return descricao;
     }
 
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public boolean isComprado() {
+        return comprado;
+    }
+
+    public void setComprado(boolean comprado) {
+        this.comprado = comprado;
+    }
+
+    @Override
+    public String toString() {
+        return getNome();
+    }
 }
